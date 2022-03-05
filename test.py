@@ -70,9 +70,15 @@ def test_function_args_is_passed_with_delimiter_change_syntax():
     output = Add('//;\n1000;2000;100;200')
     assert output == 3300
     
-def test_function_args_is_passed_with_delimiter_change_syntax():
-    '''Test the option of delimiter change using // '''
+def test_function_args_is_passed_with_delimiter_change_syntax_with_negatives():
+    '''Test the option of delimiter change using // with negatives and ValueError '''
     with pytest.raises(ValueError):
         output = Add('//;\n1000;2000;100;-200')
+    
+    
+def test_function_args_is_passed_with_delimiter_change_syntax_with_negatives_all():
+    '''Test the option of delimiter change using // '''
+    with pytest.raises(ValueError):
+        output = Add('//;\n1000;2000;100;-200;-400')
     
     

@@ -1,8 +1,4 @@
-
-
 import re
-import types
-
 
 def Add(string):
     if string is None:
@@ -25,14 +21,22 @@ def Add(string):
             return
         number_list = re.split(delimiter,string)
         tempList = []
+        negativeError = []
         for i in number_list:
             try:
                 temp = int(i)
             except:
                 raise TypeError('Cannot be Other than integer')
             if temp < 0 :
-                raise ValueError('Cannot have negative number in Add')
+                try:
+                    raise ValueError('negatives not allowed')
+                except ValueError:
+                    negativeError.append(str(temp))
+                    continue
             tempList.append(temp)
+        stringOfNegatives = ','.join(negativeError)
+        if len(stringOfNegatives):
+            raise ValueError(stringOfNegatives,'negatives are not allowed')
             
         return sum(tempList)
     
