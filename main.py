@@ -4,7 +4,7 @@ import re
 import types
 
 
-def string_calculator(string):
+def Add(string):
     if string is None:
         raise TypeError('Cannot be None')
     if not isinstance(string,str):
@@ -24,8 +24,17 @@ def string_calculator(string):
             raise SyntaxError('Cannot have newline character at the end of string')
             return
         number_list = re.split(delimiter,string)
-        number_list =[int(i) for i in number_list]
-        return sum(number_list)
+        tempList = []
+        for i in number_list:
+            try:
+                temp = int(i)
+            except:
+                raise TypeError('Cannot be Other than integer')
+            if temp < 0 :
+                raise ValueError('Cannot have negative number in Add')
+            tempList.append(temp)
+            
+        return sum(tempList)
     
     
 
